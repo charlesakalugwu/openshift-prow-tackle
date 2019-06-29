@@ -1,2 +1,4 @@
 .idea
 /env
+/oauth_token
+/hmac_token
