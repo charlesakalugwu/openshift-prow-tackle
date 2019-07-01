@@ -11,6 +11,9 @@ kubectl create secret generic oauth-token --from-file=oauth=github_token
 # install the aro prow starter
 oc apply -f cluster/aro/starter.yaml
 
+# install the pushgateway for metrics
+oc apply -f cluster/aro/pushgateway.yaml
+
 # wait for deployments to be ready
 kubectl wait --for=condition=available --timeout=60s \
 	deployment/statusreconciler \
@@ -18,5 +21,7 @@ kubectl wait --for=condition=available --timeout=60s \
 	deployment/plank \
 	deployment/deck \
 	deployment/horologium \
-	deployment/tide
+	deployment/tide \
+	deployment/pushgateway \
+	deployment/pushgateway-proxy
 
